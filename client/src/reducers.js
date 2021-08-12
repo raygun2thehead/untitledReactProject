@@ -5,8 +5,6 @@ function userReducer(state, action) {
             return action.username
         case 'LOGOUT':
             return ''
-        default:
-            throw new Error()
     }
 }
 
@@ -16,7 +14,7 @@ function postsReducer(state, action) {
             const newPost = { title: action.title, content: action.content, author: action.author }
             return [newPost, ...state]
         default:
-            throw new Error()
+            return state
     }
 }
 
