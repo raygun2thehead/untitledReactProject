@@ -5,6 +5,8 @@ function userReducer(state, action) {
             return action.username
         case 'LOGOUT':
             return ''
+        default:
+            return state    
     }
 }
 
