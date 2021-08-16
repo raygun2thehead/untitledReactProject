@@ -1,0 +1,14 @@
+{
+    "posts": [
+      { "id": "react-hooks", "title": "React Hooks", "content": "The greatest thing since sliced bread!", "author": "blehbleh" },
+      { "id": "react-moops", "title": "Using React Moops", "content": "the worst thing since sliced bread", "author": "blehbleh" }
+    ],
+    "users": [
+      { "id": 1, "username": "blehbleh", "password": "blehbleh" }
+    ],
+    "themes": [
+        { "id": 1, "primaryColor": "deepskyblue", "secondaryColor": "chartreuse" },
+        { "id": 2, "primaryColor": "orchid", "secondaryColor": "mediumseagreen" },
+        { "id": 3, "primaryColor": "darkslategray", "secondaryColor": "slategray" }
+    ]
+  }
