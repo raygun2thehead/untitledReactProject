@@ -6,6 +6,7 @@ import appReducer from './reducers'
 import Header from './Header'
 import { ThemeContext, StateContext } from './contexts'
 import ChangeTheme from './ChangeTheme'
+import {useResource} from 'react-request-hook'
 
 export default function App() {
   const [ theme, setTheme ] = useState({
@@ -15,12 +16,19 @@ export default function App() {
 
   const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [] })
   const { user } = state
+  
+  const [ posts, getPosts ] = useResource(() => ({
+    url: '/posts',
+    method: 'get'
+  }))
 
-  useEffect (() => {
-    fetch('/api/posts')
-    .then(result => result.json ())
-    .then(posts => dispatch({ type: 'FETCH_POSTS', posts}))
-  }, [])
+  useEffect(getPosts, [])
+
+  useEffect(() => {
+    if (posts && posts.data) {
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data })
+    }
+  }, [posts])
 
   useEffect(() => {
     if (user) {
