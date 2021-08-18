@@ -1,14 +1,57 @@
 {
-    "posts": [
-      { "id": "react-hooks", "title": "React Hooks", "content": "The greatest thing since sliced bread!", "author": "blehbleh" },
-      { "id": "react-moops", "title": "Using React Moops", "content": "the worst thing since sliced bread", "author": "blehbleh" }
-    ],
-    "users": [
-      { "id": 1, "username": "blehbleh", "password": "blehbleh" }
-    ],
-    "themes": [
-        { "id": 1, "primaryColor": "deepskyblue", "secondaryColor": "chartreuse" },
-        { "id": 2, "primaryColor": "orchid", "secondaryColor": "mediumseagreen" },
-        { "id": 3, "primaryColor": "darkslategray", "secondaryColor": "slategray" }
-    ]
-  }
+  "posts": [
+    {
+      "id": "react-hooks",
+      "title": "React Hooks",
+      "content": "The greatest thing since sliced bread!",
+      "author": "blehbleh"
+    },
+    {
+      "id": "react-moops",
+      "title": "Using React Moops",
+      "content": "the worst thing since sliced bread",
+      "author": "blehbleh"
+    },
+    {
+      "title": "jkldj",
+      "content": "jdkm",
+      "author": "f",
+      "id": "grHfslj"
+    },
+    {
+      "title": "idid",
+      "content": "id",
+      "author": "bleh",
+      "id": "12VhdHc"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "blehbleh",
+      "password": "blehbleh"
+    },
+    {
+      "username": "fuck",
+      "password": "fuck",
+      "id": 2
+    }
+  ],
+  "themes": [
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "chartreuse"
+    },
+    {
+      "id": 2,
+      "primaryColor": "orchid",
+      "secondaryColor": "mediumseagreen"
+    },
+    {
+      "id": 3,
+      "primaryColor": "darkslategray",
+      "secondaryColor": "slategray"
+    }
+  ]
+}

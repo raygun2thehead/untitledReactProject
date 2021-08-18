@@ -14,8 +14,8 @@ export default function App() {
     secondaryColor: 'chartreuse'
   })
 
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [] })
-  const { user } = state
+  const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [], error:'' })
+  const { user, error } = state
   
   const [ posts, getPosts ] = useResource(() => ({
     url: '/posts',
@@ -25,8 +25,11 @@ export default function App() {
   useEffect(getPosts, [])
 
   useEffect(() => {
+    if (posts && posts.error) {
+      dispatch ({ type: 'POSTS_ERROR' })
+    }
     if (posts && posts.data) {
-      dispatch({ type: 'FETCH_POSTS', posts: posts.data })
+      dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
     }
   }, [posts])
 
@@ -49,6 +52,7 @@ export default function App() {
       {user && <CreatePost />}
       <br />
       <hr />
+      {error && <b>{error}</b>}
       <PostList />
     </div>
     </ThemeContext.Provider>
