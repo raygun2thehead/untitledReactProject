@@ -6,18 +6,18 @@ import appReducer from './reducers'
 import Header from './Header'
 import { ThemeContext, StateContext } from './contexts'
 import ChangeTheme from './ChangeTheme'
-import {useResource} from 'react-request-hook'
+import { useResource } from 'react-request-hook'
 
 export default function App() {
-  const [ theme, setTheme ] = useState({
+  const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue',
     secondaryColor: 'chartreuse'
   })
 
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: [], error:'' })
+  const [state, dispatch] = useReducer(appReducer, { user: '', posts: [], error: '' })
   const { user, error } = state
-  
-  const [ posts, getPosts ] = useResource(() => ({
+
+  const [posts, getPosts] = useResource(() => ({
     url: '/posts',
     method: 'get'
   }))
@@ -26,7 +26,7 @@ export default function App() {
 
   useEffect(() => {
     if (posts && posts.error) {
-      dispatch ({ type: 'POSTS_ERROR' })
+      dispatch({ type: 'POSTS_ERROR' })
     }
     if (posts && posts.data) {
       dispatch({ type: 'FETCH_POSTS', posts: posts.data.reverse() })
@@ -43,19 +43,21 @@ export default function App() {
 
   return (
     <StateContext.Provider value={{ state, dispatch }}>
-    <ThemeContext.Provider value={theme}>
-    <div style={{ padding: 8 }}>
-      <Header text='Reac Moops blah' />
-      <ChangeTheme theme={theme} setTheme={setTheme} />
-      <UserBar />
-      <br />
-      {user && <CreatePost />}
-      <br />
-      <hr />
-      {error && <b>{error}</b>}
-      <PostList />
-    </div>
-    </ThemeContext.Provider>
+      <ThemeContext.Provider value={theme}>
+        <div style={{ padding: 8 }}>
+          <Header text='Reac Moops blah' />
+          <ChangeTheme theme={theme} setTheme={setTheme} />
+          <React.Suspense fallback={'Loading...'}>
+            <UserBar />
+          </React.Suspense>
+          <br />
+          {user && <CreatePost />}
+          <br />
+          <hr />
+          {error && <b>{error}</b>}
+          <PostList />
+        </div>
+      </ThemeContext.Provider>
     </StateContext.Provider>
   )
 }
