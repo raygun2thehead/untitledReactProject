@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import HeaderBar from './pages/HeaderBar'
 import HomePage from './pages/HomePage'
+import PostPage from './pages/PostPage'
 import appReducer from './reducers'
 import { ThemeContext, StateContext } from './contexts'
 
@@ -28,7 +29,7 @@ export default function App() {
           <HeaderBar setTheme={setTheme} />
           <br />
           <hr />
-          <HomePage />
+          <PostPage id={'react-moops'} />
         </div>
       </ThemeContext.Provider>
     </StateContext.Provider>
