@@ -1,9 +1,18 @@
 import React, { useEffect, useReducer, useState } from 'react'
+import {Router, View} from 'react-navi'
+import {mount, route} from 'navi'
 import HeaderBar from './pages/HeaderBar'
 import HomePage from './pages/HomePage'
 import PostPage from './pages/PostPage'
 import appReducer from './reducers'
 import { ThemeContext, StateContext } from './contexts'
+
+const routes = mount({
+  '/': route({ view: <HomePage />}),
+  '/view/:id': route(req => {
+    return { view: <PostPage id={req.params.id} /> }
+  })
+})
 
 export default function App() {
   const [theme, setTheme] = useState({
@@ -25,12 +34,14 @@ export default function App() {
   return (
     <StateContext.Provider value={{ state, dispatch }}>
       <ThemeContext.Provider value={theme}>
+        <Router routes={routes}>
         <div style={{ padding: 8 }}>
           <HeaderBar setTheme={setTheme} />
           <br />
           <hr />
-          <PostPage id={'react-moops'} />
+          <View />
         </div>
+        </Router>
       </ThemeContext.Provider>
     </StateContext.Provider>
   )
