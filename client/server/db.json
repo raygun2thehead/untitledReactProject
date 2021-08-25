@@ -35,6 +35,12 @@
       "content": "daniel doesnt know",
       "author": "blehbleh",
       "id": "mjJ5To8"
+    },
+    {
+      "title": "blah",
+      "content": "blam",
+      "author": "blah",
+      "id": "MFWupG4"
     }
   ],
   "users": [
@@ -42,6 +48,11 @@
       "id": 1,
       "username": "blehbleh",
       "password": "blehbleh"
+    },
+    {
+      "username": "blah",
+      "password": "blah",
+      "id": 2
     }
   ],
   "themes": [
