@@ -1,16 +1,36 @@
-import React from 'react';
-import './App.css';
-import Header from './Header'
+import React, { useState } from 'react'
 
-export const ThemeContext = React.createContext ({ primaryColor: 'deepskyblue' })
+import examples from './examples'
 
-const App = () => (
-  <ThemeContext.Provider value={{ primaryColor: 'magenta'}}>
-      <Header text="Hello Word" />
-      <ThemeContext.Provider value={{ primaryColor: 'deepskyblue'}}>
-        <Header text='this is test' />
-      </ThemeContext.Provider>
-  </ThemeContext.Provider>
-)
+const Example = ({ name, component }) => {
+  const [active, setActive] = useState(true)
 
-export default App;
+  function toggleActive() {
+    setActive(!active)
+  }
+
+  return (
+    <div>
+      <hr />
+      <h2>
+        {name}{''}
+        <button onClick={toggleActive}>
+          {active ? 'unmount' : 'mount'}
+        </button>
+      </h2>
+      {active && React.createElement(component)}
+      <br />
+    </div>
+  )
+}
+
+export default function App () {
+  return (
+    <div>
+      <h1>Reac Moops Example</h1>
+      {Object.entries(examples).map(([name, component]) => 
+        <Example key={name} name={name} component={component} />
+      )}
+    </div>
+  )
+}
