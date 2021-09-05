@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { StateContext } from '../contexts'
+import React, { useState, useEffect } from 'react'
 import {useResource} from 'react-request-hook'
 import {useInput} from 'react-hookedup'
+import {useDispatch} from '../hooks'
 
 export default function Login () {
-    const { dispatch } = useContext(StateContext)
+    const dispatch = useDispatch()
 
     const { value: username, bindToInput: bindUsername } = useInput('')
     const { value: password, bindToInput: bindPassword } = useInput('')

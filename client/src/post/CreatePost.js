@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import {useResource} from 'react-request-hook'
 import {useNavigation} from 'react-navi'
 import {useInput} from 'react-hookedup'
-import {StateContext} from '../contexts'
 import useUndo from 'use-undo'
+import {useUserState, useDispatch} from '../hooks'
 
 export default function CreatePost() {
-    const {state, dispatch} = useContext(StateContext)
-    const {user} = state
+    const user = useUserState()
+    const dispatch = useDispatch()
     
     const { value: title, bindToInput: bindTitle } = useInput('')
     const [undoContent, {
