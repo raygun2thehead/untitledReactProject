@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback} from 'react'
 import useUndo from 'use-undo'
 import {useDebouncedCallback} from 'use-debounce'
 
-export default function useDebouncedUndo(timeout = 200) {
+export default function useDebouncedUndo(timeout = 200)  {
     const [content, setInput] = useState('')
     const [undoContent, {set: setContent, ...undoRest}] = useUndo('')
 
