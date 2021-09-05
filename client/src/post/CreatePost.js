@@ -1,15 +1,23 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {useResource} from 'react-request-hook'
 import {useNavigation} from 'react-navi'
 import {useInput} from 'react-hookedup'
 import {StateContext} from '../contexts'
+import useUndo from 'use-undo'
 
 export default function CreatePost() {
     const {state, dispatch} = useContext(StateContext)
     const {user} = state
     
     const { value: title, bindToInput: bindTitle } = useInput('')
-    const {value: content, bindToInput: bindContent} = useInput('')
+    const [undoContent, {
+        set: setContent,
+        undo,
+        redo,
+        canUndo,
+        canRedo
+    }] = useUndo('')
+    const content = undoContent.present
 
     const [post , createPost ] = useResource(({ title, content, author }) => ({
         url: '/posts',
@@ -26,6 +34,10 @@ export default function CreatePost() {
         }
     }, [post])
 
+    function handleContent (e) {
+        setContent(e.target.value)
+    }
+
     function handleCreate() {
         createPost({ title, content, author: user })
     }
@@ -37,7 +49,9 @@ export default function CreatePost() {
                 <label htmlFor="create-title">Title:</label>
                 <input type="text" value={title} {...bindTitle} name="create-title" id="create-title" />
             </div>
-            <textarea value={content} {...bindContent} />
+            <textarea value={content} onChange={handleContent} />
+            <button type='button' onClick={undo} disabled={!canUndo}>Undo</button>
+            <button type='button' onClick={redo} disabled={!canRedo}>Redo</button>
             <input type="submit" value="Create" />
         </form>
     )
