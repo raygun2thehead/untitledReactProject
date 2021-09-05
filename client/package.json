@@ -23,6 +23,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "lint": "npx eslint src/",
     "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:server": "npx json-server --watch server/db.json --port 4000 --routes server/routes.json",
     "start:client": "react-scripts start",
@@ -47,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }
