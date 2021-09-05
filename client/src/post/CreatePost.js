@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
-import {useResource} from 'react-request-hook'
 import {useNavigation} from 'react-navi'
 import {useInput} from 'react-hookedup'
 import useUndo from 'use-undo'
-import {useUserState, useDispatch} from '../hooks'
+import {useUserState, useDispatch, useAPICreatePost} from '../hooks'
 
 export default function CreatePost() {
     const user = useUserState()
@@ -19,11 +18,7 @@ export default function CreatePost() {
     }] = useUndo('')
     const content = undoContent.present
 
-    const [post , createPost ] = useResource(({ title, content, author }) => ({
-        url: '/posts',
-        method: 'post',
-        data: { title, content, author }
-    }))
+    const [ post, createPost ] = useAPICreatePost()
 
     const navigation = useNavigation()
 
