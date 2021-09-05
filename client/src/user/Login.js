@@ -28,7 +28,7 @@ export default function Login () {
         if (user && user.error) {
             setLoginFailed(true)
         }
-    }, [user])
+    }, [dispatch, user])
 
     return(
         <form onSubmit={e => {e.preventDefault(); login(username, password)}}>

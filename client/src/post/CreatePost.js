@@ -32,7 +32,7 @@ export default function CreatePost() {
             dispatch({ type: 'CREATE_POST', ...post.data})
             navigation.navigate(`/view/${post.data.id}`)
         }
-    }, [post])
+    }, [dispatch, navigation, post])
 
     function handleContent (e) {
         setContent(e.target.value)

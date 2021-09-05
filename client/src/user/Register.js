@@ -21,7 +21,7 @@ export default function Register() {
         if (user && user.data) {
             dispatch ({ type: 'REGISTER', username: user.data.username})
         }
-    }, [user])
+    }, [dispatch, user])
 
     return (
         <form onSubmit={e => {e.preventDefault(); register(username, password) }}>
